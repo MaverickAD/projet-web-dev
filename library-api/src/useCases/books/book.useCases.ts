@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { BookId } from 'library-api/src/entities';
+import { Book, BookId } from 'library-api/src/entities';
 import { BookRepository } from 'library-api/src/repositories';
 import {
   BookUseCasesOutput,
@@ -26,5 +26,35 @@ export class BookUseCases {
    */
   public async getById(id: BookId): Promise<BookUseCasesOutput> {
     return this.bookRepository.getById(id);
+  }
+
+  /**
+   * Add a new book
+   * @param book Book to add
+   * @returns Added book
+   */
+  public async add(book: Book): Promise<BookUseCasesOutput> {
+    return this.bookRepository.add(book);
+  }
+
+  /**
+   * Update a book by its ID
+   * @param id Book's ID
+   * @param input New book data
+   * @returns Updated book
+   */
+  public async updateById(
+    id: BookId,
+    input: Book,
+  ): Promise<BookUseCasesOutput> {
+    return this.bookRepository.updateById(id, input);
+  }
+
+  /**
+   * Delete a book by its ID
+   * @param id Book's ID
+   */
+  public async deleteById(id: BookId): Promise<void> {
+    return this.bookRepository.deleteById(id);
   }
 }
