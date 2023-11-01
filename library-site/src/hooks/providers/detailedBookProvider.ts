@@ -9,7 +9,7 @@ type UseDetailedBookProvider = {
   load: (bookId: string) => void;
 };
 
-export const useBookProvider = (): UseDetailedBookProvider => {
+export const useDetailedBook = (): UseDetailedBookProvider => {
   const [book, setBook] = useState<DetailedBookModel | null>(null);
 
   const load = (bookId: string): void => {

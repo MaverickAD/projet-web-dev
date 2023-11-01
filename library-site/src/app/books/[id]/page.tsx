@@ -2,11 +2,11 @@
 
 import { useParams } from 'next/navigation';
 import { FC, useEffect, useState } from 'react';
-import { useBookProvider } from '@/hooks/providers/detailedBookProvider';
+import { useDetailedBook } from '@/hooks/providers/detailedBookProvider';
 
 const BooksDetailsPage: FC = () => {
   const { id } = useParams();
-  const { book, load } = useBookProvider(); // Utilisez le hook useDetailedBook
+  const { book, load } = useDetailedBook(); // Utilisez le hook useDetailedBook
   
   useEffect(() => {
     const bookId = Array.isArray(id) ? id.join('') : id; // Si id est un tableau, utilisez join pour le convertir en une seule chaîne de caractères
@@ -26,7 +26,7 @@ const BooksDetailsPage: FC = () => {
             
           </div>
           <div className='w-1/2 flex justify-center items-center flex-col'>
-            <p className='text-2xl'>Genres: {book?.genres.map(genre => genre.name).join(', ')}</p>
+            <p className='text-2xl'>Genres: {book?.genres.map(genre => genre?.name).join(', ')}</p>
             <p className='text-2xl'>Publié en {book?.writtenOn}</p>
             <p className='text-2xl'>Par {book.author.firstName} {book.author.lastName}</p>
           </div>
