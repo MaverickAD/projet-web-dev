@@ -9,7 +9,7 @@ const LoginPage: FC = (): ReactElement => {
              <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
-            className="mx-auto h-60 w-auto"
+            className="mx-auto h-48 w-auto"
             src="chat.png"
             alt="Your Company"
           />
@@ -64,7 +64,12 @@ const LoginPage: FC = (): ReactElement => {
               </button>
             </div>
           </form>
-
+          <p className="mt-10 text-center text-sm text-gray-500">
+            Pas encore inscrit ?{' '}
+            <a href="/signin" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
+              Inscrivez-vous ici !
+            </a>
+          </p>
         </div>
       </div>
     </>
