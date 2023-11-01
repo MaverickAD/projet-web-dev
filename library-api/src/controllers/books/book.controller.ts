@@ -1,9 +1,17 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+} from '@nestjs/common';
 import {
   BookPresenter,
   PlainBookPresenter,
 } from 'library-api/src/controllers/books/book.presenter';
-import { BookId } from 'library-api/src/entities';
+import { Book, BookId } from 'library-api/src/entities';
 import { BookUseCases } from 'library-api/src/useCases';
 
 @Controller('books')
@@ -22,5 +30,27 @@ export class BookController {
     const book = await this.bookUseCases.getById(id);
 
     return BookPresenter.from(book);
+  }
+
+  @Post('/')
+  public async add(@Body() input: Book): Promise<BookPresenter> {
+    const book = await this.bookUseCases.add(input);
+
+    return BookPresenter.from(book);
+  }
+
+  @Patch('/:id')
+  public async updateById(
+    @Param('id') id: BookId,
+    @Body() input: Book,
+  ): Promise<BookPresenter> {
+    const book = await this.bookUseCases.updateById(id, input);
+
+    return BookPresenter.from(book);
+  }
+
+  @Delete('/:id')
+  public async deleteById(@Param('id') id: BookId): Promise<void> {
+    return await this.bookUseCases.deleteById(id);
   }
 }

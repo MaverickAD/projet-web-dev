@@ -7,4 +7,8 @@ export class GenreRepository extends Repository<Genre> {
   constructor(public readonly dataSource: DataSource) {
     super(Genre, dataSource.createEntityManager());
   }
+
+  public async getAllPlain(): Promise<Genre[]> {
+    return await this.find();
+  }
 }
