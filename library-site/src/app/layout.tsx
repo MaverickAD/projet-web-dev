@@ -1,10 +1,10 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+// import { Inter } from 'next/font/google';
 import './globals.css';
 import { ReactElement, ReactNode } from 'react';
 import NavBar from './components/navBar';
 
-const inter = Inter({ subsets: ['latin'] });
+// const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Library',
@@ -18,9 +18,10 @@ export default function RootLayout({
 }): ReactElement {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <NavBar/>
-        {children}</body>
+      <body className="bg-slate-100">
+        <NavBar />
+        {children}
+      </body>
     </html>
   );
 }

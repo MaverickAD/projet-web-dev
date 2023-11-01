@@ -4,7 +4,7 @@ import { PlainBookModel } from '@/models';
 
 type UseListBooksProvider = {
   books: PlainBookModel[];
-  load: () => void;
+  booksLoad: () => void;
 };
 
 export const useListBooks = (): UseListBooksProvider => {
@@ -17,7 +17,7 @@ export const useListBooks = (): UseListBooksProvider => {
       .catch((err) => console.error(err));
   };
 
-  return { books, load: fetchBooks };
+  return { books, booksLoad: fetchBooks };
 };
 
 type BookProviders = {
