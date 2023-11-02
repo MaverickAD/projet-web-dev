@@ -12,14 +12,14 @@ const BooksPage: FC = (): ReactElement => {
   const [filterByName, setFilterByName] = useState<string>('');
   const [filterByGenre, setFilterByGenre] = useState<string>('');
 
-  useEffect(() => booksLoad, []);
-  useEffect(() => genreLoad, []);
+  useEffect(() => booksLoad);
+  useEffect(() => genreLoad);
 
   return (
     <>
-      <h1 className="text-3xl">Books</h1>
-      <div>
-        <label htmlFor="filter">
+      <div className="bg-white mb-2">
+        <h1 className="text-3xl">Books</h1>
+        <label htmlFor="filter" className="m-2">
           Filtrer par titre : &nbsp;
           <input
             className="border border-black rounded-md"
@@ -29,9 +29,7 @@ const BooksPage: FC = (): ReactElement => {
             }}
           />
         </label>
-      </div>
-      <div>
-        <label htmlFor="filter">
+        <label htmlFor="filter" className="m-2">
           Filtrer par genre : &nbsp;
           <select
             className="border border-black rounded-md"
@@ -48,6 +46,7 @@ const BooksPage: FC = (): ReactElement => {
           </select>
         </label>
       </div>
+
       <div className="grid grid-cols-4 justify-items-center">
         {books
           .filter((book) =>

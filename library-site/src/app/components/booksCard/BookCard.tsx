@@ -2,6 +2,7 @@
 
 import { FC, ReactElement } from 'react';
 import { PlainBookModel } from '@/models';
+import GenrePill from '@/app/components/genrePill/GenrePill';
 
 interface BookCardProps {
   book: PlainBookModel;
@@ -12,22 +13,26 @@ const BookCard: FC<BookCardProps> = ({ book }): ReactElement => {
   const writtenOn = new Date(book.writtenOn).toLocaleDateString();
 
   return (
-    <div className="border border-red-500 rounded-xl w-full max-w-xs p-2 m-2 bg-white">
+    <div className="rounded-xl shadow-2xl w-full max-w-xs p-2 m-2 bg-white">
       <div className="flex justify-center items-center mb-2">
         <div className="w-40 h-60 border border-orange-500">Image</div>
       </div>
 
-      <div className="border border-green-500 mb-2 px-2">
-        <h1 className="text-2xl italic">{book.name}</h1>
-        <p className="text-lg text-gray-500">{authorName}</p>
+      <div className="border-b border-t mb-2 p-2">
+        <div className="">
+          <h1 className="text-2xl italic">{book.name}</h1>
+        </div>
+        <div className="grid grid-cols-2 text-lg text-gray-500">
+          <p>{authorName}</p>
+          <p>{writtenOn}</p>
+        </div>
       </div>
 
-      <p>{writtenOn}</p>
-      <ul className="list-inside list-disc">
-        {book.genres.map((genre: string) => (
-          <li>{genre}</li>
+      <div className="mb-2 p-2 flex flex-row">
+        {book.genres.map((genre) => (
+          <GenrePill genre={genre} key={genre} />
         ))}
-      </ul>
+      </div>
     </div>
   );
 };
