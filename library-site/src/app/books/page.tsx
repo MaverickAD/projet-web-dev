@@ -3,6 +3,7 @@
 import { FC, ReactElement, useEffect, useState } from 'react';
 import { useBooksProviders, useGenresProviders } from '@/hooks';
 import BookCard from '@/app/components/booksCard/BookCard';
+import AddBookModal from '@/app/components/addBookModal/AddBookModal';
 
 const BooksPage: FC = (): ReactElement => {
   const { useListBooks } = useBooksProviders();
@@ -45,6 +46,7 @@ const BooksPage: FC = (): ReactElement => {
             ))}
           </select>
         </label>
+        <AddBookModal />
       </div>
 
       <div className="grid grid-cols-4 justify-items-center">
