@@ -1,6 +1,7 @@
 'use client';
 
 import { FC, ReactElement } from 'react';
+import Link from 'next/link';
 import { PlainBookModel } from '@/models';
 import GenrePill from '@/app/components/genrePill/GenrePill';
 
@@ -20,7 +21,9 @@ const BookCard: FC<BookCardProps> = ({ book }): ReactElement => {
 
       <div className="border-b border-t mb-2 p-2">
         <div className="">
-          <h1 className="text-2xl italic">{book.name}</h1>
+          <h1 className="text-2xl italic">
+            <Link href={`books/${book.id}`}>{book.name}</Link>
+          </h1>
         </div>
         <div className="grid grid-cols-2 text-lg text-gray-500">
           <p>{authorName}</p>
