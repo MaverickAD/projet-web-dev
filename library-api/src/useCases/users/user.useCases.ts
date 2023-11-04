@@ -1,0 +1,29 @@
+import { Injectable } from '@nestjs/common';
+import { UserRepository } from 'library-api/src/repositories/users/user.repository';
+import { User, UserId } from 'library-api/src/entities/User';
+import { PlainUserModel } from 'library-api/src/models/user.model';
+
+@Injectable()
+export class UserUseCases {
+  constructor(private readonly userRepository: UserRepository) {}
+
+  public async getAllUsers(): Promise<PlainUserModel[]> {
+    return await this.userRepository.getAllUsers();
+  }
+
+  public async getById(id: UserId): Promise<PlainUserModel> {
+    return await this.userRepository.getById(id);
+  }
+
+  public async add(user: User): Promise<PlainUserModel> {
+    return this.userRepository.add(user);
+  }
+
+  public async updateById(id: UserId, user: User): Promise<PlainUserModel> {
+    return this.userRepository.updateById(id, user);
+  }
+
+  public async deleteById(id: UserId): Promise<void> {
+    return this.userRepository.deleteById(id);
+  }
+}
