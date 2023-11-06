@@ -8,11 +8,11 @@ export class UserUseCases {
   constructor(private readonly userRepository: UserRepository) {}
 
   public async getAllUsers(): Promise<PlainUserModel[]> {
-    return await this.userRepository.getAllUsers();
+    return this.userRepository.getAllUsers();
   }
 
   public async getById(id: UserId): Promise<PlainUserModel> {
-    return await this.userRepository.getById(id);
+    return this.userRepository.getById(id);
   }
 
   public async add(user: User): Promise<PlainUserModel> {

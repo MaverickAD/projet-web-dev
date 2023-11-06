@@ -23,11 +23,17 @@ const BooksDetailsPage: FC = () => {
           </div>
           <div className="w-1/2 flex justify-center items-center flex-col">
             <p className="text-2xl">
-              Genres: {book?.genres.map((genre) => genre?.name).join(', ')}
+              Genres:
+              {book?.genres.map((genre) => genre?.name).join(', ')}
             </p>
-            <p className="text-2xl">Publié en {book?.writtenOn}</p>
             <p className="text-2xl">
-              Par {book.author.firstName} {book.author.lastName}
+              Publié en
+              {book?.writtenOn}
+            </p>
+            <p className="text-2xl">
+              Par
+              {book.author.firstName}
+              {book.author.lastName}
             </p>
           </div>
         </div>

@@ -1,4 +1,4 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
 import { GenreUseCases } from '../../useCases';
 import { GenrePresenter } from './genre.presenter';
 

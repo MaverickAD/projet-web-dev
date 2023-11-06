@@ -33,7 +33,7 @@ export class UserRepository extends Repository<User> {
   }
 
   public async add(input: User): Promise<PlainUserRepositoryOutput> {
-    return await this.dataSource.transaction(async (manager) => {
+    return this.dataSource.transaction(async (manager) => {
       const [user] = await manager.save<User>(
         manager.create<User>(User, [
           {
@@ -43,7 +43,7 @@ export class UserRepository extends Repository<User> {
         ]),
       );
 
-      return await this.getById(user.id);
+      return this.getById(user.id);
     });
   }
 
@@ -57,7 +57,7 @@ export class UserRepository extends Repository<User> {
       });
     });
 
-    return await this.getById(id);
+    return this.getById(id);
   }
 
   public async deleteById(id: UserId): Promise<void> {

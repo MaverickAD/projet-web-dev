@@ -54,6 +54,7 @@ const BooksPage: FC = (): ReactElement => {
           .filter((book) =>
             book.name.toLowerCase().includes(filterByName.toLowerCase()),
           )
+          // eslint-disable-next-line no-confusing-arrow
           .filter((book) =>
             filterByGenre === ''
               ? true

@@ -9,6 +9,6 @@ export class GenreRepository extends Repository<Genre> {
   }
 
   public async getAllPlain(): Promise<Genre[]> {
-    return await this.find();
+    return this.find();
   }
 }

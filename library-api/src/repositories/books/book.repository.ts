@@ -50,7 +50,7 @@ export class BookRepository extends Repository<Book> {
   }
 
   public async add(input: Book): Promise<BookRepositoryOutput> {
-    return await this.dataSource.transaction(async (manager) => {
+    return this.dataSource.transaction(async (manager) => {
       const [book] = await manager.save<Book>(
         manager.create<Book>(Book, [
           {
@@ -85,7 +85,7 @@ export class BookRepository extends Repository<Book> {
         );
       }
 
-      return await this.getById(book.id);
+      return this.getById(book.id);
     });
   }
 
@@ -123,7 +123,7 @@ export class BookRepository extends Repository<Book> {
       });
     });
 
-    return await this.getById(id);
+    return this.getById(id);
   }
 
   public async deleteById(id: BookId): Promise<void> {

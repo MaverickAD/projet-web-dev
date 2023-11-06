@@ -1,5 +1,3 @@
-// Dans votre fichier detailedBookProvider.ts
-
 import axios from 'axios';
 import { useState } from 'react';
 import { DetailedBookModel } from '@/models/detailedBook.model';
