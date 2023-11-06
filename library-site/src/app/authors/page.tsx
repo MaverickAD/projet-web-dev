@@ -1,7 +1,32 @@
 'use client';
 
-import { FC } from 'react';
+import { FC, ReactElement, useEffect, useState } from 'react';
+import { useAuthorsProviders } from '@/hooks';
+import AuthorCard from '@/app/components/authorsCard/authorsCard';
+// import AddBookModal from '@/app/components/addBookModal/AddBookModal';
 
-const AuthorsPage: FC = () => <>Authors page not implemented</>;
+const AuthorsPage: FC = (): ReactElement => {
+  const { useListAuthors } = useAuthorsProviders();
+  const { authors, authorsLoad } = useListAuthors();
+  const [filterByName, setFilterByName] = useState<string>('');
+  const [filterByGenre, setFilterByGenre] = useState<string>('');
+
+  useEffect(() => authorsLoad);
+
+  return (
+    <>
+
+      <div className="grid grid-cols-4 justify-items-center">
+        {authors
+          .filter((author) =>
+            author.lastName.toLowerCase().includes(filterByName.toLowerCase()),
+          )
+          .map((author) => (
+            <AuthorCard key={author.id} author={author} />
+          ))}
+      </div>
+    </>
+  );
+};
 
 export default AuthorsPage;
