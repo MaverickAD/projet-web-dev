@@ -8,7 +8,7 @@ import {
   Post,
 } from '@nestjs/common';
 import { AuthorUseCases } from '../../useCases';
-import { PlainAuthorPresenter } from './author.presenter';
+import { AuthorPresenter, PlainAuthorPresenter } from './author.presenter';
 import { Author, AuthorId } from '../../entities';
 
 @Controller('authors')
@@ -23,29 +23,27 @@ export class AuthorController {
   }
 
   @Get('/:id')
-  public async getById(
-    @Param('id') id: AuthorId,
-  ): Promise<PlainAuthorPresenter> {
+  public async getById(@Param('id') id: AuthorId): Promise<AuthorPresenter> {
     const author = await this.authorUseCases.getById(id);
 
-    return PlainAuthorPresenter.from(author);
+    return AuthorPresenter.from(author);
   }
 
   @Post('/')
-  public async add(@Body() input: Author): Promise<PlainAuthorPresenter> {
+  public async add(@Body() input: Author): Promise<AuthorPresenter> {
     const author = await this.authorUseCases.add(input);
 
-    return PlainAuthorPresenter.from(author);
+    return AuthorPresenter.from(author);
   }
 
   @Patch('/:id')
   public async updateById(
     @Param('id') id: AuthorId,
     @Body() input: Author,
-  ): Promise<PlainAuthorPresenter> {
+  ): Promise<AuthorPresenter> {
     const author = await this.authorUseCases.updateById(id, input);
 
-    return PlainAuthorPresenter.from(author);
+    return AuthorPresenter.from(author);
   }
 
   @Delete('/:id')

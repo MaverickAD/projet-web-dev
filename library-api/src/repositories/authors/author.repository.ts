@@ -2,8 +2,15 @@ import { Injectable } from '@nestjs/common';
 import { Author, AuthorId } from 'library-api/src/entities';
 import { DataSource, Repository } from 'typeorm';
 import { v4 } from 'uuid';
-import { PlainAuthorPresenter } from '../../controllers/authors/author.presenter';
 import { NotFoundError } from '../../common/errors';
+import {
+  AuthorRepositoryOutput,
+  PlainAuthorRepositoryOutput,
+} from './author.repository.type';
+import {
+  adaptAuthorEntityToAuthorModel,
+  adaptAuthorEntityToPlainAuthorModel,
+} from './author.utils';
 
 @Injectable()
 export class AuthorRepository extends Repository<Author> {
@@ -11,23 +18,28 @@ export class AuthorRepository extends Repository<Author> {
     super(Author, dataSource.createEntityManager());
   }
 
-  public async getAllPlain(): Promise<PlainAuthorPresenter[]> {
-    const authors = await this.find();
+  public async getAllPlain(): Promise<PlainAuthorRepositoryOutput[]> {
+    const authors = await this.find({
+      relations: { books: true },
+    });
 
-    return authors.map(PlainAuthorPresenter.from);
+    return authors.map(adaptAuthorEntityToPlainAuthorModel);
   }
 
-  public async getById(id: AuthorId): Promise<PlainAuthorPresenter> {
-    const author = await this.findOne({ where: { id } });
+  public async getById(id: AuthorId): Promise<AuthorRepositoryOutput> {
+    const author = await this.findOne({
+      relations: { books: true },
+      where: { id },
+    });
 
     if (!author) {
       throw new NotFoundError(`Author - '${id}'`);
     }
 
-    return PlainAuthorPresenter.from(author);
+    return adaptAuthorEntityToAuthorModel(author);
   }
 
-  public async add(input: Author): Promise<PlainAuthorPresenter> {
+  public async add(input: Author): Promise<AuthorRepositoryOutput> {
     return this.dataSource.transaction(async (manager) => {
       const [author] = await manager.save<Author>(
         manager.create<Author>(Author, [
@@ -38,14 +50,14 @@ export class AuthorRepository extends Repository<Author> {
         ]),
       );
 
-      return PlainAuthorPresenter.from(author);
+      return this.getById(author.id);
     });
   }
 
   public async updateById(
     id: AuthorId,
     input: Author,
-  ): Promise<PlainAuthorPresenter> {
+  ): Promise<AuthorRepositoryOutput> {
     await this.dataSource.transaction(async (manager) => {
       await manager.update<Author>(Author, id, {
         ...input,
