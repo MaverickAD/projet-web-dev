@@ -11,7 +11,6 @@ const AuthorsPage: FC = (): ReactElement => {
   const [filterByName, setFilterByName] = useState<string>('');
 
   useEffect(() => authorsLoad);
-  
   return (
     <>
         <label htmlFor="filter" className="m-2">
