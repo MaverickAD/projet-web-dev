@@ -1,3 +1,3 @@
-import { PlainUserModel } from '../../models';
+import { UserModel } from '../../models';
 
-export type PlainUserRepositoryOutput = PlainUserModel;
+export type PlainUserRepositoryOutput = UserModel;

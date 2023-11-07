@@ -8,7 +8,7 @@ export class PlainBookPresenter {
 
   name: string;
 
-  author: string;
+  author: PlainAuthorPresenter;
 
   writtenOn: Date;
 
@@ -24,7 +24,7 @@ export class PlainBookPresenter {
     return new PlainBookPresenter({
       id: data.id,
       name: data.name,
-      author: data.author,
+      author: PlainAuthorPresenter.from(data.author),
       writtenOn: data.writtenOn,
       cover: data.cover,
       genres: data.genres,

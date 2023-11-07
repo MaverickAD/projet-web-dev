@@ -1,6 +1,6 @@
 import { UserId } from 'library-api/src/entities/User';
 
-export type PlainUserModel = {
+export type UserModel = {
   id: UserId;
   firstName: string;
   lastName: string;
@@ -8,4 +8,5 @@ export type PlainUserModel = {
   email: string;
   password: string;
   preferredBook: string;
+  preferredBook: Book;
 };
