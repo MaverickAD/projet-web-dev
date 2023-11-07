@@ -51,6 +51,6 @@ export class BookController {
 
   @Delete('/:id')
   public async deleteById(@Param('id') id: BookId): Promise<void> {
-    return await this.bookUseCases.deleteById(id);
+    return this.bookUseCases.deleteById(id);
   }
 }

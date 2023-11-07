@@ -45,6 +45,8 @@ module.exports = {
         properties: 'off',
         parameterProperties: 'explicit'
       }
-    }]
+    }],
+    'implicit-arrow-linebreak': 'off',
+    'function-paren-newline': 'off',
   },
 };
