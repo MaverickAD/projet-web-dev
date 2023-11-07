@@ -3,7 +3,6 @@
 import { FC, ReactElement } from 'react';
 import Link from 'next/link';
 import { PlainAuthorModel } from '@/models';
-import GenrePill from '@/app/components/genrePill/GenrePill';
 
 interface AuthorCardProps {
   author: PlainAuthorModel;

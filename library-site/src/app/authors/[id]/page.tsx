@@ -18,10 +18,12 @@ const AuthorsDetailsPage: FC = () => {
       {author ? (
         <div className="h-screen p-5 flex">
           <div className="w-1/2 flex justify-center items-center flex-col">
-            <h1 className="text-4xl font-bold mb-10">{author.firstName} {author.lastName}</h1>
+            <h1 className="text-4xl font-bold mb-10">
+              {author.firstName}
+              {author.lastName}
+            </h1>
             <div className="h-96 w-96 bg-red-500" />
           </div>
-
         </div>
       ) : (
         <p>Loading author details...</p>

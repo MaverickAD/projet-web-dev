@@ -22,10 +22,10 @@ export default function RootLayout({
       <body className="bg-slate-100">
         <NavBar />
         <BasicBreadcrumbs
-          homeElement={'Home'}
+          homeElement="Home"
           separator={<span> &gt; </span>}
-          activeClasses='text-amber-500'
-          listClasses='hover:underline mx-2 font-bold'
+          activeClasses="text-amber-500"
+          listClasses="hover:underline mx-2 font-bold"
           capitalizeLinks
         />
         {children}

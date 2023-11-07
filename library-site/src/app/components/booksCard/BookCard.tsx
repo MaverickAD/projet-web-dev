@@ -33,7 +33,7 @@ const BookCard: FC<BookCardProps> = ({ book }): ReactElement => {
 
       <div className="mb-2 p-2 flex flex-row">
         {book.genres.map((genre) => (
-          <GenrePill genre={genre} key={genre} />
+          <GenrePill genre={genre.name} key={genre.name} />
         ))}
       </div>
     </div>
