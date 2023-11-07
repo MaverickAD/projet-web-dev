@@ -1,4 +1,5 @@
 import { UserId } from 'library-api/src/entities/User';
+import { Book } from '../entities';
 
 export type UserModel = {
   id: UserId;
@@ -7,6 +8,7 @@ export type UserModel = {
   age: number;
   email: string;
   password: string;
-  preferredBook: string;
   preferredBook: Book;
+  booksRead: Book[];
+  favoriteGenres: string[];
 };

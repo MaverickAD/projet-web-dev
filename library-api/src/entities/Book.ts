@@ -10,6 +10,7 @@ import {
 import { BookGenre } from './BookGenre';
 import { Author } from './Author';
 import { User } from './User';
+import { UserReadBook } from './UserReadBook';
 
 export type BookId = string & { __brand: 'Book' };
 
@@ -35,4 +36,7 @@ export class Book extends BaseEntity {
 
   @OneToMany(() => User, (user) => user.preferredBook)
   usersPreferred?: User[];
+
+  @OneToMany(() => UserReadBook, (userReadBook) => userReadBook.book)
+  userReadBook?: UserReadBook[];
 }

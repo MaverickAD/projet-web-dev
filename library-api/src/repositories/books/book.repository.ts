@@ -117,10 +117,12 @@ export class BookRepository extends Repository<Book> {
         );
       }
 
-      await manager.update<Book>(Book, id, {
-        ...input,
-        bookGenres: undefined,
-      });
+      if (!(Object.keys(input).length === 1 && input.bookGenres)) {
+        await manager.update<Book>(Book, id, {
+          ...input,
+          bookGenres: undefined,
+        });
+      }
     });
 
     return this.getById(id);

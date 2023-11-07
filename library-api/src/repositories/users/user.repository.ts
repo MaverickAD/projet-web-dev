@@ -1,7 +1,14 @@
 import { Injectable } from '@nestjs/common';
-import { DataSource, Repository } from 'typeorm';
+import { DataSource, In, Repository } from 'typeorm';
 import { v4 } from 'uuid';
-import { User, UserId } from '../../entities';
+import {
+  Book,
+  Genre,
+  User,
+  UserFavoriteGenre,
+  UserId,
+  UserReadBook,
+} from '../../entities';
 import { PlainUserRepositoryOutput } from './user.repository.type';
 import { adaptUserEntityToPlainUserModel } from './user.utils';
 
@@ -13,7 +20,11 @@ export class UserRepository extends Repository<User> {
 
   public async getAllUsers(): Promise<PlainUserRepositoryOutput[]> {
     const users = await this.find({
-      relations: { preferredBook: true },
+      relations: {
+        preferredBook: true,
+        userReadBooks: { book: true },
+        userFavoriteGenres: { genre: true },
+      },
     });
 
     return users.map(adaptUserEntityToPlainUserModel);
@@ -21,7 +32,11 @@ export class UserRepository extends Repository<User> {
 
   public async getById(id: UserId): Promise<PlainUserRepositoryOutput> {
     const user = await this.findOne({
-      relations: { preferredBook: true },
+      relations: {
+        preferredBook: true,
+        userReadBooks: { book: true },
+        userFavoriteGenres: { genre: true },
+      },
       where: { id },
     });
 
@@ -52,8 +67,53 @@ export class UserRepository extends Repository<User> {
     input: User,
   ): Promise<PlainUserRepositoryOutput> {
     await this.dataSource.transaction(async (manager) => {
+      if (input.userReadBooks) {
+        await manager.delete<UserReadBook>(UserReadBook, { user: { id } });
+
+        const newReadBooks = await manager.find<Book>(Book, {
+          where: {
+            id: In(input.userReadBooks),
+          },
+        });
+
+        await manager.save<UserReadBook>(
+          newReadBooks.map((book) =>
+            manager.create<UserReadBook>(UserReadBook, {
+              id: v4(),
+              user: { id },
+              book,
+            }),
+          ),
+        );
+      }
+
+      if (input.userFavoriteGenres) {
+        await manager.delete<UserFavoriteGenre>(UserFavoriteGenre, {
+          user: { id },
+        });
+
+        const newFavoriteGenre = await manager.find<Genre>(Genre, {
+          where: {
+            name: In(input.userFavoriteGenres),
+          },
+        });
+
+        await manager.save<UserFavoriteGenre>(
+          newFavoriteGenre.map((genre) =>
+            manager.create<UserFavoriteGenre>(UserFavoriteGenre, {
+              id: v4(),
+              user: { id },
+              genre,
+            }),
+          ),
+        );
+      }
+
+      // soucis avec patch
       await manager.update<User>(User, id, {
         ...input,
+        userReadBooks: undefined,
+        userFavoriteGenres: undefined,
       });
     });
 

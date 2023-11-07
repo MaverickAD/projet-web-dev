@@ -4,7 +4,7 @@ export type PlainBookModel = {
   id: BookId;
   name: string;
   writtenOn: Date;
-  author: string;
+  author: Author;
   cover?: string;
   genres: string[];
 };
