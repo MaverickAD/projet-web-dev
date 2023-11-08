@@ -3,6 +3,7 @@
 import { useParams } from 'next/navigation';
 import { FC, useEffect } from 'react';
 import { useDetailedBook } from '@/hooks/providers/detailedBookProvider';
+import { format } from 'date-fns';
 
 const BooksDetailsPage: FC = () => {
   const { id } = useParams();
@@ -13,6 +14,8 @@ const BooksDetailsPage: FC = () => {
     load(bookId);
   });
 
+const formattedWrittenOn = book ? format(new Date(book.writtenOn), 'dd/MM/yyyy') : '';
+
   return (
     <div>
       {book ? (
@@ -22,17 +25,18 @@ const BooksDetailsPage: FC = () => {
             <div className="h-96 w-96 bg-red-500" />
           </div>
           <div className="w-1/2 flex justify-center items-center flex-col">
-            <p className="text-2xl">
-              Genres:
+            <p className="text-2xl py-3">
+              Genres :&nbsp;
               {book?.genres.map((genre) => genre?.name).join(', ')}
             </p>
-            <p className="text-2xl">
-              Publié en
-              {book?.writtenOn}
+            <p className="text-2xl py-3">
+              Publié en&nbsp;
+              {formattedWrittenOn}
             </p>
-            <p className="text-2xl">
-              Par
+            <p className="text-2xl py-3">
+              Par&nbsp;
               {book.author.firstName}
+              &nbsp;
               {book.author.lastName}
             </p>
           </div>
