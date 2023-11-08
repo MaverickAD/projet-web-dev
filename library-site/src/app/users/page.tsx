@@ -2,9 +2,24 @@
 
 import { FC, ReactElement, useEffect, useState } from 'react';
 import { useUsersProviders } from '@/hooks';
+import { useDeleteUser } from '../../api/userDelete';
+
 // import AddBookModal from '@/app/components/addBookModal/AddBookModal';
 
 const UsersPage: FC = (): ReactElement => {
+
+  const handleDeleteUser = async (userId: string) => {
+    try {
+      const deleteUser = useDeleteUser();
+      await deleteUser(userId);
+      // Actualisez la liste des utilisateurs ou effectuez d'autres actions nécessaires
+      console.log('Utilisateur supprimé avec succès');
+    } catch (error) {
+      // Gestion des erreurs
+      console.error('Erreur lors de la suppression de l\'utilisateur', error);
+    }
+  };
+
   const { useListUsers } = useUsersProviders();
   const { users, usersLoad } = useListUsers();
   const [filterByName, setFilterByName] = useState<string>('');
@@ -79,7 +94,7 @@ const UsersPage: FC = (): ReactElement => {
                         )}
                     </div>
                 </div>
-                <button className='relative h-7 w-7 border-20 left-5 bottom-5 bg-[url("/cross.png")] bg-contain'></button>
+                <button onClick={() => handleDeleteUser(user.id)} className='relative h-7 w-7 border-20 left-5 bottom-5 bg-[url("/cross.png")] bg-contain'></button>
             </div>
 
         ))}
