@@ -25,6 +25,6 @@ type DetailedAuthorProviders = {
   useDetailedAuthor: () => UseDetailedAuthorProvider;
 };
 
-export const useDetailedBooksProviders = (): DetailedAuthorProviders => ({
+export const useDetailedAuthorsProviders = (): DetailedAuthorProviders => ({
   useDetailedAuthor,
 });
