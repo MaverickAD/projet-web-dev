@@ -1,4 +1,5 @@
 export * from './bookProviders';
 export * from './genreProvider';
 export * from './authorProviders';
-export * from './detailedUserProviders'
+export * from './userProviders';
+export * from './detailedUserProviders';
