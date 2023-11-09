@@ -9,6 +9,7 @@ const AuthorsPage: FC = (): ReactElement => {
   const { useListAuthors } = useAuthorsProviders();
   const { authors, authorsLoad } = useListAuthors();
   const [filterByName, setFilterByName] = useState<string>('');
+  
 
   useEffect(() => authorsLoad);
   return (
@@ -34,6 +35,7 @@ const AuthorsPage: FC = (): ReactElement => {
             <AuthorCard key={author.id} author={author} />
           ))}
       </div>
+      
     </>
   );
 };

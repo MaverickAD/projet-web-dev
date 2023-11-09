@@ -12,9 +12,12 @@ const BooksPage: FC = (): ReactElement => {
   const { genres, genreLoad } = useListGenres();
   const [filterByName, setFilterByName] = useState<string>('');
   const [filterByGenre, setFilterByGenre] = useState<string>('');
+  
+
 
   useEffect(() => booksLoad);
   useEffect(() => genreLoad);
+
 
   return (
     <>
