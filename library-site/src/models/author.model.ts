@@ -3,4 +3,5 @@ export type PlainAuthorModel = {
   firstName: string;
   lastName: string;
   photoUrl: string;
+  writtenBooksNumber?: number;
 };

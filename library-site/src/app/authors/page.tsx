@@ -1,14 +1,15 @@
 'use client';
 
-import { FC, ReactElement, useEffect, useState } from 'react';
-import { useAuthorsProviders } from '@/hooks';
-import AuthorCard from '@/app/components/authorsCard/authorsCard';
 import AddAuthorModal from '@/app/components/addAuthorModal/addAuthorModal';
+import AuthorCard from '@/app/components/authorsCard/authorsCard';
+import { useAuthorsProviders } from '@/hooks';
+import { FC, ReactElement, useEffect, useState } from 'react';
 
 const AuthorsPage: FC = (): ReactElement => {
   const { useListAuthors } = useAuthorsProviders();
   const { authors, authorsLoad } = useListAuthors();
   const [filterByName, setFilterByName] = useState<string>('');
+  const [filterByNumberOfBooks, setFilterByNumberOfBooks] = useState<number>(6);
 
   useEffect(() => authorsLoad);
   return (
@@ -23,6 +24,23 @@ const AuthorsPage: FC = (): ReactElement => {
           }}
         />
       </label>
+      <label htmlFor="filter" className="m-2">
+        Filtreur par nombre de livres écrits :
+        {filterByNumberOfBooks === 6 ? (
+          <p>No filter</p>
+        ) : (
+          <p>{filterByNumberOfBooks}</p>
+        )}
+        <input
+          type="range"
+          defaultValue={6}
+          min={0}
+          max={6}
+          onChange={(e): void => {
+            setFilterByNumberOfBooks(Number(e.target.value));
+          }}
+        />
+      </label>
       <AddAuthorModal />
       <div className="grid grid-cols-4 justify-items-center">
         {authors
@@ -30,6 +48,11 @@ const AuthorsPage: FC = (): ReactElement => {
             `${author.firstName} ${author.lastName}`
               .toLowerCase()
               .includes(filterByName.toLowerCase()),
+          )
+          .filter((author) =>
+            filterByNumberOfBooks !== 6
+              ? author.writtenBooksNumber === filterByNumberOfBooks
+              : author,
           )
           .map((author) => (
             <AuthorCard key={author.id} author={author} />

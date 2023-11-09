@@ -22,6 +22,7 @@ const AuthorCard: FC<AuthorCardProps> = ({ author }): ReactElement => {
           <h1 className="text-2xl italic">
             <Link href={`authors/${author.id}`}>{authorName}</Link>
           </h1>
+          <p>{author.writtenBooksNumber}</p>
         </div>
       </div>
     </div>
