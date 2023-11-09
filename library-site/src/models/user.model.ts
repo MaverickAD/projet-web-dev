@@ -7,7 +7,7 @@ export type PlainUserModel = {
   age: string;
   email: string;
   password: string;
-  preferredBook: PlainBookModel;
+  preferredBook: PlainBookModel | null;
   booksRead: PlainBookModel[];
   favoriteGenres: string[];
 };

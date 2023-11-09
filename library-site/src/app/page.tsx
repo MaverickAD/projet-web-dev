@@ -1,8 +1,8 @@
-'use client';
+'use client'
 
-import { useDetailedUser } from '@/hooks';
-import Image from 'next/image';
 import { FC, ReactElement, useEffect } from 'react';
+import Image from 'next/image';
+import { useDetailedUser } from '@/hooks';
 
 const Home: FC = (): ReactElement => {
   const userIsLoggedIn = true; // Votre logique de vérification de connexion ici
