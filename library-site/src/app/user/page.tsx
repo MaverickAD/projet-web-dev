@@ -9,6 +9,14 @@ import { useDeleteUser } from '../api/user.delete';
 const UsersPage: FC = (): ReactElement => {
 
   const handleDeleteUser = async (userId: string) => {
+    // Utilisez la fonction window.confirm pour demander la confirmation
+    const confirmed = window.confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?');
+  
+    if (!confirmed) {
+      // Si l'utilisateur annule la suppression, ne faites rien
+      return;
+    }
+  
     try {
       const deleteUser = useDeleteUser();
       await deleteUser(userId);
@@ -19,6 +27,7 @@ const UsersPage: FC = (): ReactElement => {
       console.error('Erreur lors de la suppression de l\'utilisateur', error);
     }
   };
+  
 
   const { useListUsers } = useUsersProviders();
   const { users, usersLoad } = useListUsers();
