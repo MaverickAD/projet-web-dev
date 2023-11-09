@@ -47,6 +47,14 @@ const NavBar: FC = (): ReactElement => (
           </li>
           <li>
             <div
+              className="block py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100"
+              aria-current="page"
+            >
+              <Link href="/users">Users</Link>
+            </div>
+          </li>
+          <li>
+            <div
               className="block py-2 pl-3 pr-4 text-white bg-blue-400 rounded-3xl pr-6 pl-6"
               aria-current="page"
             >
