@@ -1,9 +1,9 @@
 'use client';
 
-import { FC, ReactElement } from 'react';
-import Link from 'next/link';
-import { PlainBookModel } from '@/models';
 import GenrePill from '@/app/components/genrePill/GenrePill';
+import { PlainBookModel } from '@/models';
+import Link from 'next/link';
+import { FC, ReactElement } from 'react';
 
 interface BookCardProps {
   book: PlainBookModel;
@@ -15,8 +15,8 @@ const BookCard: FC<BookCardProps> = ({ book }): ReactElement => {
 
   return (
     <div className="rounded-xl shadow-2xl w-full max-w-xs p-2 m-2 bg-white">
-      <div className="flex justify-center items-center mb-2">
-        <div className="w-40 h-60 border border-orange-500">Image</div>
+      <div className="flex justify-center items-center my-2">
+        <img src={book.cover} alt="book cover" className="w-40 h-60" />
       </div>
 
       <div className="border-b border-t mb-2 p-2">
@@ -33,7 +33,7 @@ const BookCard: FC<BookCardProps> = ({ book }): ReactElement => {
 
       <div className="mb-2 p-2 flex flex-row">
         {book.genres.map((genre) => (
-          <GenrePill genre={genre.name} key={genre.name} />
+          <GenrePill genre={genre} key={genre} />
         ))}
       </div>
     </div>

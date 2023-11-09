@@ -23,7 +23,7 @@ const AuthorsDetailsPage: FC = () => {
               &nbsp;
               {author.lastName}
             </h1>
-            <img src={author.photo} />
+            <img src={author.photoUrl} alt="Author photo" />
           </div>
           <div className="w-1/2 flex justify-center items-center grid text-2xl">
             <p className="pb-44 pt-20">

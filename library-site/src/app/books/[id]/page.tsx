@@ -2,6 +2,7 @@
 
 import { useDetailedBook } from '@/hooks/providers/detailedBookProvider';
 import { format } from 'date-fns';
+import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { FC, useEffect } from 'react';
 
@@ -35,12 +36,14 @@ const BooksDetailsPage: FC = () => {
               Publié en&nbsp;
               {formattedWrittenOn}
             </p>
-            <p className="text-2xl py-3">
-              Par&nbsp;
-              {book.author.firstName}
-              &nbsp;
-              {book.author.lastName}
-            </p>
+            <Link href={`/authors/${book.author.id}`}>
+              <p className="text-2xl py-3">
+                Par&nbsp;
+                {book.author.firstName}
+                &nbsp;
+                {book.author.lastName}
+              </p>
+            </Link>
           </div>
         </div>
       ) : (

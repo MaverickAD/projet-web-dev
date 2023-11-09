@@ -58,7 +58,7 @@ const BooksPage: FC = (): ReactElement => {
           .filter((book) =>
             filterByGenre === ''
               ? true
-              : book.genres.some((genre) => genre.name === filterByGenre),
+              : book.genres.some((genre) => genre === filterByGenre),
           )
           .map((book) => (
             <BookCard key={book.id} book={book} />

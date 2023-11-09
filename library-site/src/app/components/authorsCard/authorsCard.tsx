@@ -1,8 +1,8 @@
 'use client';
 
-import { FC, ReactElement } from 'react';
-import Link from 'next/link';
 import { PlainAuthorModel } from '@/models';
+import Link from 'next/link';
+import { FC, ReactElement } from 'react';
 
 interface AuthorCardProps {
   author: PlainAuthorModel;
@@ -14,7 +14,7 @@ const AuthorCard: FC<AuthorCardProps> = ({ author }): ReactElement => {
   return (
     <div className="rounded-xl shadow-2xl w-full max-w-xs p-2 m-2 bg-white">
       <div className="flex justify-center items-center mb-2">
-        <div className="w-40 h-60 border border-orange-500">Image</div>
+        <img src={author.photoUrl} alt="book cover" className="w-40 h-60" />
       </div>
 
       <div className="border-b border-t mb-2 p-2">
