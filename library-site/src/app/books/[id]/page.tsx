@@ -1,10 +1,9 @@
 'use client';
 
-import { useParams } from 'next/navigation';
-import { FC, useEffect } from 'react';
 import { useDetailedBook } from '@/hooks/providers/detailedBookProvider';
 import { format } from 'date-fns';
-import Image from 'next/image';
+import { useParams } from 'next/navigation';
+import { FC, useEffect } from 'react';
 
 const BooksDetailsPage: FC = () => {
   const { id } = useParams();
@@ -15,7 +14,9 @@ const BooksDetailsPage: FC = () => {
     load(bookId);
   });
 
-const formattedWrittenOn = book ? format(new Date(book.writtenOn), 'dd/MM/yyyy') : '';
+  const formattedWrittenOn = book
+    ? format(new Date(book.writtenOn), 'dd/MM/yyyy')
+    : '';
 
   return (
     <div>
@@ -23,7 +24,7 @@ const formattedWrittenOn = book ? format(new Date(book.writtenOn), 'dd/MM/yyyy')
         <div className="h-screen p-5 flex">
           <div className="w-1/2 flex justify-center items-center flex-col">
             <h1 className="text-4xl font-bold mb-10">{book.name}</h1>
-            <img src={book.cover} alt="test" className='h-96 w-60' />
+            <img src={book.cover} alt="test" className="h-96 w-60" />
           </div>
           <div className="w-1/2 flex justify-center items-center flex-col">
             <p className="text-2xl py-3">

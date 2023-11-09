@@ -1,9 +1,9 @@
 'use client';
 
-import { FC, ReactElement, useEffect, useState } from 'react';
-import { useBooksProviders, useGenresProviders } from '@/hooks';
-import BookCard from '@/app/components/booksCard/BookCard';
 import AddBookModal from '@/app/components/addBookModal/AddBookModal';
+import BookCard from '@/app/components/booksCard/BookCard';
+import { useBooksProviders, useGenresProviders } from '@/hooks';
+import { FC, ReactElement, useEffect, useState } from 'react';
 
 const BooksPage: FC = (): ReactElement => {
   const { useListBooks } = useBooksProviders();
@@ -12,12 +12,9 @@ const BooksPage: FC = (): ReactElement => {
   const { genres, genreLoad } = useListGenres();
   const [filterByName, setFilterByName] = useState<string>('');
   const [filterByGenre, setFilterByGenre] = useState<string>('');
-  
-
 
   useEffect(() => booksLoad);
   useEffect(() => genreLoad);
-
 
   return (
     <>

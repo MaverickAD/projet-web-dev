@@ -4,7 +4,9 @@ import axios from 'axios';
 export const useDeleteUser = () => {
   const deleteUser = async (userId: string) => {
     try {
-      const response = await axios.delete(`http://localhost:3001/users/${userId}`); // Remplacez l'URL par l'URL de votre API
+      const response = await axios.delete(
+        `http://localhost:3001/users/${userId}`,
+      ); // Remplacez l'URL par l'URL de votre API
       // Vous pouvez gérer la réponse de suppression ici si nécessaire
       return response.data;
     } catch (error) {
