@@ -1,8 +1,9 @@
 'use client';
 
-import AuthorCard from '@/app/components/authorsCard/authorsCard';
-import { useAuthorsProviders } from '@/hooks';
 import { FC, ReactElement, useEffect, useState } from 'react';
+import { useAuthorsProviders } from '@/hooks';
+import AuthorCard from '@/app/components/authorsCard/authorsCard';
+import AddAuthorModal from '@/app/components/addAuthorModal/addAuthorModal';
 
 const AuthorsPage: FC = (): ReactElement => {
   const { useListAuthors } = useAuthorsProviders();
@@ -22,6 +23,7 @@ const AuthorsPage: FC = (): ReactElement => {
           }}
         />
       </label>
+      <AddAuthorModal />
       <div className="grid grid-cols-4 justify-items-center">
         {authors
           .filter((author) =>
