@@ -49,7 +49,7 @@ const Home: FC = (): ReactElement => {
           ) : (
             user?.booksRead.map((book, index) => (
               <div key={index} className='border-2 border-black p-1 m-1 w-1/6 flex flex-col justify-center items-center'>
-                <img src={book.cover} alt={book.name} />
+                <img src={book.cover} alt={book.name} className='h-56 w-full'/>
                 <h1 className='text-xs text-center'>{book.name}</h1>
               </div>
             ))
