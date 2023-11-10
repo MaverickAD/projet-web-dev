@@ -19,10 +19,13 @@ const AuthorCard: FC<AuthorCardProps> = ({ author }): ReactElement => {
 
       <div className="border-b border-t mb-2 p-2">
         <div className="">
-          <h1 className="text-2xl italic">
+          <h1 className="text-2xl">
             <Link href={`authors/${author.id}`}>{authorName}</Link>
           </h1>
-          <p>{author.writtenBooksNumber}</p>
+          <p>
+            {author.writtenBooksNumber}
+            &nbsp;livres
+          </p>
         </div>
       </div>
     </div>
