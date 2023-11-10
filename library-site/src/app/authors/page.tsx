@@ -1,8 +1,9 @@
 'use client';
 
 import { FC, ReactElement, useEffect, useState } from 'react';
-import AddAuthorModal from '@/app/components/addAuthorModal/addAuthorModal';
 import AuthorCard from '@/app/components/authorsCard/authorsCard';
+import AddAuthorModal from '@/app/components/modal/AddAuthor/AddAuthor.modal';
+import Modal from '@/app/components/modal/Modal';
 import { useAuthorsProviders } from '@/hooks';
 
 const AuthorsPage: FC = (): ReactElement => {
@@ -41,7 +42,9 @@ const AuthorsPage: FC = (): ReactElement => {
           }}
         />
       </label>
-      <AddAuthorModal />
+      <Modal title="Ajouter un auteur">
+        <AddAuthorModal />
+      </Modal>
       <div className="grid grid-cols-4 justify-items-center">
         {authors
           .filter((author) =>

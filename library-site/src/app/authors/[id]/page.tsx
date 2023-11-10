@@ -2,7 +2,8 @@
 
 import { useParams } from 'next/navigation';
 import { FC, useEffect } from 'react';
-import DeleteAuthorModal from '@/app/components/deleteAuthorModal/DeleteAuthorModal';
+import DeleteAuthorModal from '@/app/components/modal/DeleteAuthor/DeleteAuthor.modal';
+import Modal from '@/app/components/modal/Modal';
 import { useDetailedAuthor } from '@/hooks/providers/detailedAuthorProvider';
 
 const AuthorsDetailsPage: FC = () => {
@@ -48,7 +49,9 @@ const AuthorsDetailsPage: FC = () => {
             </p>
           </div>
           <div className="flex justify-end h-24">
-            <DeleteAuthorModal author={author.id} />
+            <Modal title="Supprimer cet auteur">
+              <DeleteAuthorModal author={author.id} />
+            </Modal>
           </div>
         </div>
       ) : (

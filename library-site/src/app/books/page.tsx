@@ -1,8 +1,9 @@
 'use client';
 
 import { FC, ReactElement, useEffect, useState } from 'react';
-import AddBookModal from '@/app/components/addBookModal/AddBookModal';
 import BookCard from '@/app/components/booksCard/BookCard';
+import AddBookModal from '@/app/components/modal/AddBook/AddBook.modal';
+import Modal from '@/app/components/modal/Modal';
 import { useBooksProviders, useGenresProviders } from '@/hooks';
 
 const BooksPage: FC = (): ReactElement => {
@@ -46,7 +47,9 @@ const BooksPage: FC = (): ReactElement => {
             ))}
           </select>
         </label>
-        <AddBookModal />
+        <Modal title="Ajouter un livre">
+          <AddBookModal />
+        </Modal>
       </div>
 
       <div className="grid grid-cols-4 justify-items-center">

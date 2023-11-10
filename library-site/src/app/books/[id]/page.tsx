@@ -5,7 +5,8 @@ import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { FC, useEffect } from 'react';
 import { useDetailedBook } from '@/hooks/providers/detailedBookProvider';
-import DeleteBookModal from '@/app/components/deleteBookModal/DeleteBookModal';
+import Modal from '@/app/components/modal/Modal';
+import DeleteBookModal from '@/app/components/modal/DeleteBook/DeleteBook.modal';
 
 const BooksDetailsPage: FC = () => {
   const { id } = useParams();
@@ -47,7 +48,9 @@ const BooksDetailsPage: FC = () => {
             </Link>
           </div>
           <div className="flex justify-end h-24">
-            <DeleteBookModal book={book.id} />
+            <Modal title="Supprimer le livre">
+              <DeleteBookModal book={book.id} />
+            </Modal>
           </div>
         </div>
       ) : (
