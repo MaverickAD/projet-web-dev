@@ -1,9 +1,9 @@
 'use client';
 
+import { FC, ReactElement, useEffect, useState } from 'react';
 import AddAuthorModal from '@/app/components/addAuthorModal/addAuthorModal';
 import AuthorCard from '@/app/components/authorsCard/authorsCard';
 import { useAuthorsProviders } from '@/hooks';
-import { FC, ReactElement, useEffect, useState } from 'react';
 
 const AuthorsPage: FC = (): ReactElement => {
   const { useListAuthors } = useAuthorsProviders();

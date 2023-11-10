@@ -1,8 +1,6 @@
-// Dans votre fichier detailedUserProvider.ts
-
-import { PlainUserModel } from '@/models/user.model';
 import axios from 'axios';
 import { useState } from 'react';
+import { PlainUserModel } from '@/models/user.model';
 
 type UseDetailedUserProvider = {
   user: PlainUserModel | null;

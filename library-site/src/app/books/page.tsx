@@ -1,9 +1,9 @@
 'use client';
 
+import { FC, ReactElement, useEffect, useState } from 'react';
 import AddBookModal from '@/app/components/addBookModal/AddBookModal';
 import BookCard from '@/app/components/booksCard/BookCard';
 import { useBooksProviders, useGenresProviders } from '@/hooks';
-import { FC, ReactElement, useEffect, useState } from 'react';
 
 const BooksPage: FC = (): ReactElement => {
   const { useListBooks } = useBooksProviders();

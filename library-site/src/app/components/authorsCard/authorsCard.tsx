@@ -1,8 +1,8 @@
 'use client';
 
-import { PlainAuthorModel } from '@/models';
 import Link from 'next/link';
 import { FC, ReactElement } from 'react';
+import { PlainAuthorModel } from '@/models';
 
 interface AuthorCardProps {
   author: PlainAuthorModel;

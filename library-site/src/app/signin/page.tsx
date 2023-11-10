@@ -1,9 +1,8 @@
-'use client'
+'use client';
 
-import { FC, ReactElement, useState, ChangeEvent } from 'react';
+import { ChangeEvent, FC, ReactElement, useState } from 'react';
+import { PlainUserModel } from '@/models';
 import { createUser } from '../api/user.create';
-import { PlainUserModel } from '../../models/user.model';
-import { PlainBookModel } from "@/models/book.model";
 
 const LoginPage: FC = (): ReactElement => {
   const [formData, setFormData] = useState<PlainUserModel>({
@@ -19,13 +18,13 @@ const LoginPage: FC = (): ReactElement => {
   });
 
   const handleChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
+    e: ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+  ): void => {
     // Mettre à jour le state avec les données du formulaire
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
 
-  const handleCreateUser = async (formData: PlainUserModel) => {
+  const handleCreateUser = async (formData: PlainUserModel): Promise<void> => {
     try {
       // Envoi des données du formulaire à la fonction createUser
       await createUser(formData);
@@ -33,10 +32,9 @@ const LoginPage: FC = (): ReactElement => {
       console.log('Utilisateur créé avec succès');
     } catch (error) {
       // Gestion des erreurs
-      console.error('Erreur lors de la création de l\'utilisateur', error);
+      console.error("Erreur lors de la création de l'utilisateur", error);
     }
   };
-  
 
   return (
     <form>
@@ -160,7 +158,7 @@ const LoginPage: FC = (): ReactElement => {
             <button
               type="button"
               className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2focus:outline-none"
-              onClick={() => handleCreateUser(formData)}
+              onClick={(): Promise<void> => handleCreateUser(formData)}
             >
               S&apos;inscrire
             </button>

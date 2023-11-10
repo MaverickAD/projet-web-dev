@@ -1,11 +1,11 @@
 'use client';
 
+import { FC, ReactElement, useEffect, useState } from 'react';
 import { useDeleteUser } from '@/api/userDelete';
 import { useUsersProviders } from '@/hooks';
-import { FC, ReactElement, useEffect, useState } from 'react';
 
 const UsersPage: FC = (): ReactElement => {
-  const handleDeleteUser = async (userId: string) => {
+  const handleDeleteUser = async (userId: string): Promise<void> => {
     try {
       const deleteUser = useDeleteUser();
       await deleteUser(userId);
@@ -91,7 +91,7 @@ const UsersPage: FC = (): ReactElement => {
                         key={book.id}
                         className="border-2 border-black p-1 m-1 w-1/6 flex flex-col justify-center items-center"
                       >
-                        <img src={book.cover}></img>
+                        <img src={book.cover} alt="book cover" />
                         <h1 className="text-xs text-center">{book.name}</h1>
                       </div>
                     ))

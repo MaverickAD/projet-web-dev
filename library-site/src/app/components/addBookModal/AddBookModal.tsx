@@ -1,9 +1,9 @@
 'use client';
 
-import { useAuthorsProviders, useGenresProviders } from '@/hooks';
-import { BookModel } from '@/models';
 import axios from 'axios';
 import { FC, ReactElement, useEffect, useState } from 'react';
+import { useAuthorsProviders, useGenresProviders } from '@/hooks';
+import { BookModel } from '@/models';
 
 const AddBookModal: FC = (): ReactElement => {
   const { useListGenres } = useGenresProviders();
@@ -103,7 +103,8 @@ const AddBookModal: FC = (): ReactElement => {
                             <option value="" />
                             {authors.map((author) => (
                               <option key={author.id} value={author.id}>
-                                {author.firstName} {author.lastName}
+                                {author.firstName}
+                                {author.lastName}
                               </option>
                             ))}
                           </select>

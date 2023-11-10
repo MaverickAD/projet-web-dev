@@ -1,8 +1,8 @@
 'use client';
 
-import { PlainAuthorModel } from '@/models';
 import axios from 'axios';
 import { FC, ReactElement, useState } from 'react';
+import { PlainAuthorModel } from '@/models';
 
 const AddAuthorModal: FC = (): ReactElement => {
   const [showModal, setShowModal] = useState<boolean>(false);

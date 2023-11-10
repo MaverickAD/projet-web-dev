@@ -1,16 +1,16 @@
 'use client';
 
-import GenrePill from '@/app/components/genrePill/GenrePill';
-import { PlainBookModel } from '@/models';
 import Link from 'next/link';
 import { FC, ReactElement } from 'react';
+import GenrePill from '@/app/components/genrePill/GenrePill';
+import { PlainBookModel } from '@/models';
 
 interface BookCardProps {
   book: PlainBookModel;
 }
 
 const BookCard: FC<BookCardProps> = ({ book }): ReactElement => {
-  const authorName = `${book.author.firstName} ${book.author.lastName}`;
+  const authorName = `${book.author?.firstName} ${book.author?.lastName}`;
   const writtenOn = new Date(book.writtenOn).toLocaleDateString();
 
   return (

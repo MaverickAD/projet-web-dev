@@ -9,10 +9,9 @@ type UseDetailedUserProvider = {
 
 export const useDetailedUser = (): UseDetailedUserProvider => {
   const [user, setUser] = useState<PlainUserModel | null>(null);
-  
 
   const load = (userId: string): void => {
-    console.log(userId)
+    console.log(userId);
     axios
       .get(`${process.env.NEXT_PUBLIC_API_URL}/users/${userId}`)
       .then((data) => setUser(data.data))

@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
-import { FC, ReactElement, useEffect } from 'react';
 import Image from 'next/image';
+import { FC, ReactElement, useEffect } from 'react';
 import { useDetailedUser } from '@/hooks';
 
 const Home: FC = (): ReactElement => {
@@ -20,9 +20,9 @@ const Home: FC = (): ReactElement => {
             Nous sommes contents de vous voir de retour
           </h1>
 
-          <p className="text-lg mt-4">Âge : {user?.age}</p>
+          <p className="text-lg mt-4">Âge :{user?.age}</p>
 
-          <p className="text-lg">Email : {user?.email}</p>
+          <p className="text-lg">Email :{user?.email}</p>
 
           {user?.preferredBook && (
             <div>
