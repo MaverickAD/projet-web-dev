@@ -1,8 +1,9 @@
 'use client';
 
-import { useDetailedAuthor } from '@/hooks/providers/detailedAuthorProvider';
 import { useParams } from 'next/navigation';
 import { FC, useEffect } from 'react';
+import DeleteAuthorModal from '@/app/components/deleteAuthorModal/DeleteAuthorModal';
+import { useDetailedAuthor } from '@/hooks/providers/detailedAuthorProvider';
 
 const AuthorsDetailsPage: FC = () => {
   const { id } = useParams();
@@ -23,11 +24,15 @@ const AuthorsDetailsPage: FC = () => {
               &nbsp;
               {author.lastName}
             </h1>
-            <img src={author.photoUrl} alt="Author photo" />
+            <img
+              src={author.photoUrl}
+              alt="Author portrait"
+              className="w-72 h-96"
+            />
           </div>
-          <div className="w-1/2 flex justify-center items-center grid text-2xl">
+          <div className="w-1/2 flex justify-center items-center text-2xl">
             <p className="pb-44 pt-20">
-              <p className="text-2xl py-3 underline   py-11 text-4xl">
+              <p className="text-2xl py-3 underline">
                 Liste des livres écrit :&nbsp;
               </p>
               <div className="flex flex-col">
@@ -41,6 +46,9 @@ const AuthorsDetailsPage: FC = () => {
                 ))}
               </div>
             </p>
+          </div>
+          <div className="flex justify-end h-24">
+            <DeleteAuthorModal author={author.id} />
           </div>
         </div>
       ) : (

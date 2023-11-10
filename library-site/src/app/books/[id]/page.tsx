@@ -1,10 +1,11 @@
 'use client';
 
-import { useDetailedBook } from '@/hooks/providers/detailedBookProvider';
 import { format } from 'date-fns';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { FC, useEffect } from 'react';
+import { useDetailedBook } from '@/hooks/providers/detailedBookProvider';
+import DeleteBookModal from '@/app/components/deleteBookModal/DeleteBookModal';
 
 const BooksDetailsPage: FC = () => {
   const { id } = useParams();
@@ -44,6 +45,9 @@ const BooksDetailsPage: FC = () => {
                 {book.author.lastName}
               </p>
             </Link>
+          </div>
+          <div className="flex justify-end h-24">
+            <DeleteBookModal book={book.id} />
           </div>
         </div>
       ) : (
