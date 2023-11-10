@@ -1,5 +1,3 @@
-'use client';
-
 import Link from 'next/link';
 import { FC, ReactElement } from 'react';
 import GenrePill from '@/app/components/genrePill/GenrePill';
@@ -14,11 +12,7 @@ const BookCard: FC<BookCardProps> = ({ book }): ReactElement => {
   const writtenOn = new Date(book.writtenOn).toLocaleDateString();
 
   return (
-    <div className="rounded-xl shadow-2xl w-full max-w-xs p-2 m-2 bg-white">
-      <div className="flex justify-center items-center my-2">
-        <img src={book.cover} alt="book cover" className="w-40 h-60" />
-      </div>
-
+    <>
       <div className="border-b border-t mb-2 p-2">
         <div className="">
           <h1 className="text-2xl italic">
@@ -36,7 +30,7 @@ const BookCard: FC<BookCardProps> = ({ book }): ReactElement => {
           <GenrePill genre={genre} key={genre} />
         ))}
       </div>
-    </div>
+    </>
   );
 };
 

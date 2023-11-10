@@ -1,7 +1,8 @@
 'use client';
 
 import { FC, ReactElement, useEffect, useState } from 'react';
-import BookCard from '@/app/components/booksCard/BookCard';
+import BookCard from '@/app/components/card/BookCard/BookCard';
+import Card from '@/app/components/card/Card';
 import AddBookModal from '@/app/components/modal/AddBook/AddBook.modal';
 import Modal from '@/app/components/modal/Modal';
 import { useBooksProviders, useGenresProviders } from '@/hooks';
@@ -64,7 +65,9 @@ const BooksPage: FC = (): ReactElement => {
               : book.genres.some((genre) => genre === filterByGenre),
           )
           .map((book) => (
-            <BookCard key={book.id} book={book} />
+            <Card key={book.id} photo={book.cover}>
+              <BookCard book={book} />
+            </Card>
           ))}
       </div>
     </>

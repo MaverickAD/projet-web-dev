@@ -1,7 +1,8 @@
 'use client';
 
 import { FC, ReactElement, useEffect, useState } from 'react';
-import AuthorCard from '@/app/components/authorsCard/authorsCard';
+import AuthorCard from '@/app/components/card/AuthorCard/AuthorCard';
+import Card from '@/app/components/card/Card';
 import AddAuthorModal from '@/app/components/modal/AddAuthor/AddAuthor.modal';
 import Modal from '@/app/components/modal/Modal';
 import { useAuthorsProviders } from '@/hooks';
@@ -58,7 +59,9 @@ const AuthorsPage: FC = (): ReactElement => {
               : author,
           )
           .map((author) => (
-            <AuthorCard key={author.id} author={author} />
+            <Card key={author.id} photo={author.photoUrl}>
+              <AuthorCard author={author} />
+            </Card>
           ))}
       </div>
     </>
