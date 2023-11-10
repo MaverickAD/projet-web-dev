@@ -10,6 +10,4 @@ async function bootstrap(): Promise<void> {
   await app.listen(port);
 }
 
-export default bootstrap();
-
 bootstrap();
